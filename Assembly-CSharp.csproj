@@ -10,10 +10,11 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
-  </PropertyGroup>
+	<LangVersion>default</LangVersion>
+</PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -23,7 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-  </PropertyGroup>
+	<LangVersion>default</LangVersion>
+</PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -31,7 +33,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-  </PropertyGroup>
+	<LangVersion>default</LangVersion>
+</PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.XML" />
@@ -45,8 +48,61 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\MapGenerator.cs" />
-     <Compile Include="Assets\Scripts\MeshGenerator.cs" />
+     <Compile Include="Assets\CoherentNoise\Constants.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Cache.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Combination\Add.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Combination\Blend.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Combination\Max.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Combination\Min.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Combination\Multiply.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Constant.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Displacement\Perturb.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Displacement\Rotate.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Displacement\Scale.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Displacement\Translate.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Displacement\Turbulence.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Fractal\BillowNoise.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Fractal\FractalNoiseBase.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Fractal\PinkNoise.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Fractal\RidgeNoise.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Function.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\GradientNoise.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\GradientNoise2D.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Modification\Bias.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Modification\Binarize.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Modification\Curve.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Modification\Gain.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Modification\Modify.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Patterns\Cylinders.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Patterns\Helpers.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Patterns\Planes.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Patterns\Spheres.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Patterns\TexturePattern.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\ValueNoise.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\ValueNoise2D.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Voronoi\VoronoiCells.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Voronoi\VoronoiCells2D.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Voronoi\VoronoiDiagramBase.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Voronoi\VoronoiDiagramBase2D.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Voronoi\VoronoiPits.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Voronoi\VoronoiPits2D.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Voronoi\VoronoiValleys.cs" />
+     <Compile Include="Assets\CoherentNoise\Generation\Voronoi\VoronoiValleys2D.cs" />
+     <Compile Include="Assets\CoherentNoise\Generator.cs" />
+     <Compile Include="Assets\CoherentNoise\Interpolation\CosineSCurve.cs" />
+     <Compile Include="Assets\CoherentNoise\Interpolation\CubicSCurve.cs" />
+     <Compile Include="Assets\CoherentNoise\Interpolation\LinearSCurve.cs" />
+     <Compile Include="Assets\CoherentNoise\Interpolation\QuinticSCurve.cs" />
+     <Compile Include="Assets\CoherentNoise\Interpolation\SCurve.cs" />
+     <Compile Include="Assets\CoherentNoise\LatticeNoise.cs" />
+     <Compile Include="Assets\CoherentNoise\NoiseEx.cs" />
+     <Compile Include="Assets\CoherentNoise\Properties\AssemblyInfo.cs" />
+     <Compile Include="Assets\CoherentNoise\Texturing\TextureMaker.cs" />
+     <Compile Include="Assets\Scripts\2D\MapGenerator.cs" />
+     <Compile Include="Assets\Scripts\2D\MeshGenerator.cs" />
+     <Compile Include="Assets\Scripts\MapGenerator3D.cs" />
+     <Compile Include="Assets\Scripts\MarchingCubes.cs" />
+     <Compile Include="Assets\Scripts\MeshGenerator3D.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
@@ -62,5 +118,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
