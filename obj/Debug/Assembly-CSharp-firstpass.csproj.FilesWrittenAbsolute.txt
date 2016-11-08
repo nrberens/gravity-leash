@@ -1,0 +1,17 @@
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/nberens/Documents/Caves/obj/Debug/Assembly-CSharp-firstpass.dll
+/Users/nberens/Documents/Caves/obj/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/nberens/Documents/Caves/Temp/bin/Debug/UnityEngine.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/UnityEditor.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Mono.Cecil.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Unity.DataContract.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/nberens/Documents/Caves/Temp/bin/Debug/Mono.Cecil.Mdb.dll
