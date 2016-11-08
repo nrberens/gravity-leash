@@ -135,6 +135,7 @@
 'Assets/CoherentNoise/NoiseEx.cs'
 'Assets/CoherentNoise/Properties/AssemblyInfo.cs'
 'Assets/CoherentNoise/Texturing/TextureMaker.cs'
+'Assets/GravityLeash.cs'
 'Assets/Scripts/2D/MapGenerator.cs'
 'Assets/Scripts/2D/MeshGenerator.cs'
 'Assets/Scripts/MapGenerator3D.cs'

@@ -3,6 +3,7 @@
 -nowarn:0169
 -out:'Temp/Assembly-CSharp.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll'
+-r:'Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll'
 -r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll'
 -r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll'
@@ -134,6 +135,7 @@
 'Assets/CoherentNoise/NoiseEx.cs'
 'Assets/CoherentNoise/Properties/AssemblyInfo.cs'
 'Assets/CoherentNoise/Texturing/TextureMaker.cs'
+'Assets/GravityLeash.cs'
 'Assets/Scripts/2D/MapGenerator.cs'
 'Assets/Scripts/2D/MeshGenerator.cs'
 'Assets/Scripts/MapGenerator3D.cs'

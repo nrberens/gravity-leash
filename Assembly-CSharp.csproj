@@ -98,6 +98,8 @@
      <Compile Include="Assets\CoherentNoise\NoiseEx.cs" />
      <Compile Include="Assets\CoherentNoise\Properties\AssemblyInfo.cs" />
      <Compile Include="Assets\CoherentNoise\Texturing\TextureMaker.cs" />
+     <Compile Include="Assets\GravityLeash.cs" />
+     <Compile Include="Assets\Jetpack.cs" />
      <Compile Include="Assets\Scripts\2D\MapGenerator.cs" />
      <Compile Include="Assets\Scripts\2D\MeshGenerator.cs" />
      <Compile Include="Assets\Scripts\MapGenerator3D.cs" />
@@ -111,6 +113,10 @@
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{640E6AED-C3FA-9589-16A1-B231BE9D943D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -31,12 +31,12 @@ public class MapGenerator3D : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown(0)) {
+/*		if(Input.GetMouseButtonDown(0)) {
 			currentGizmoDepth++;
 		}
 		if(Input.GetMouseButtonDown(1)){
 			currentGizmoDepth--;
-		}
+		}*/
 		if(Input.GetKeyDown(KeyCode.G)) {
 			GenerateMap();
 		}
@@ -59,6 +59,9 @@ public class MapGenerator3D : MonoBehaviour {
 			SmoothMap();
 		}
 
+		//TODO not working
+		AddWallsToMap();
+
 		float[,,] floatMap = new float[width, height, depth];
 		for(int x = 0; x < width-1; x++) {
 			for(int y = 0; y < height-1; y++) {
@@ -75,6 +78,18 @@ public class MapGenerator3D : MonoBehaviour {
 		mesh.RecalculateNormals();
 
 		GetComponent<MeshCollider>().sharedMesh = mesh;
+	}
+
+	void AddWallsToMap() {
+		for(int x = 0; x < width; x++) {
+			for(int y = 0; y < height; y++) {
+				for(int z = 0; z < depth; z++) {
+					if(x==0 || x == width-1 || y ==0 || y == height-1 || z == 0 || z == depth-1) {
+						map[x,y,z] = 1;
+					}
+				}
+			}
+		}
 	}
 
 	void RandomFillMap() {
