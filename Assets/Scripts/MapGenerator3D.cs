@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using CoherentNoise.Generation.Fractal;
 
 public class MapGenerator3D : MonoBehaviour {
 
@@ -49,7 +50,10 @@ public class MapGenerator3D : MonoBehaviour {
 	void GenerateMap() {
 		map = new int[width, height, depth];
 
-		RandomFillMap();
+		//RandomFillMap();
+		//PerlinFillMap();
+		//RidgeFillMap();
+		BillowFillMap();
 
 		for (int i = 0; i < smoothIterations; i++) {
 			SmoothMap();
@@ -69,6 +73,8 @@ public class MapGenerator3D : MonoBehaviour {
 		mesh.name = "world";
 		GetComponent<MeshFilter>().mesh = mesh;
 		mesh.RecalculateNormals();
+
+		GetComponent<MeshCollider>().sharedMesh = mesh;
 	}
 
 	void RandomFillMap() {
@@ -89,6 +95,75 @@ public class MapGenerator3D : MonoBehaviour {
 			}
 		}
 	}
+
+	void PerlinFillMap() {
+		if(useRandomSeed) {
+			seed = Time.time.ToString() + transform.position.ToString();
+		}
+
+		System.Random pseudoRandom = new System.Random(seed.GetHashCode());
+		PinkNoise pink = new PinkNoise(pseudoRandom.Next(0,100));
+
+		for(int x = 0; x < width; x++) {
+			for(int y = 0; y < height; y++) {
+				for(int z = 0; z < depth; z++) {
+					if(x==0 || x == width-1 || y ==0 || y == height-1 || z == 0 || z == depth-1) {
+						map[x,y,z] = 1;
+					} else {
+						if(pink.GetValue(x,y,z) > 0.15 ) map[x,y,z] = 1;
+						else map[x,y,z] = 0;
+					}
+				}
+			}
+		}
+	}
+
+	void RidgeFillMap() {
+		if(useRandomSeed) {
+			seed = Time.time.ToString() + transform.position.ToString();
+		}
+
+		System.Random pseudoRandom = new System.Random(seed.GetHashCode());
+		RidgeNoise ridge = new RidgeNoise(pseudoRandom.Next(0,100));
+
+		for(int x = 0; x < width; x++) {
+			for(int y = 0; y < height; y++) {
+				for(int z = 0; z < depth; z++) {
+					if(x==0 || x == width-1 || y ==0 || y == height-1 || z == 0 || z == depth-1) {
+						map[x,y,z] = 1;
+					} else {
+						Debug.Log(ridge.GetValue(x,y,z));
+						if(ridge.GetValue(x,y,z) > 1.55f ) map[x,y,z] = 1;
+						else map[x,y,z] = 0;
+					}
+				}
+			}
+		}
+	}
+
+void BillowFillMap() {
+		if(useRandomSeed) {
+			seed = Time.time.ToString() + transform.position.ToString();
+		}
+
+		System.Random pseudoRandom = new System.Random(seed.GetHashCode());
+		BillowNoise billow = new BillowNoise(pseudoRandom.Next(0,100));
+
+		for(int x = 0; x < width; x++) {
+			for(int y = 0; y < height; y++) {
+				for(int z = 0; z < depth; z++) {
+					if(x==0 || x == width-1 || y ==0 || y == height-1 || z == 0 || z == depth-1) {
+						map[x,y,z] = 1;
+					} else {
+						Debug.Log(billow.GetValue(x,y,z));
+						if(billow.GetValue(x,y,z) > -1.1f ) map[x,y,z] = 1;
+						else map[x,y,z] = 0;
+					}
+				}
+			}
+		}
+	}
+	
 
 	void SmoothMap() {
 		for(int x = 0; x < width; x++) {
@@ -128,7 +203,7 @@ public class MapGenerator3D : MonoBehaviour {
 	}
 
 	void OnDrawGizmos() {
-/*		if(map != null) {
+		/*if(map != null) {
 			for (int x = 0; x < width; x++) {
 				for(int y = 0; y < height; y++) {
 					for(int z = 0; z < depth; z++) {
