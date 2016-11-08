@@ -8,11 +8,17 @@ public class GravityLeash : MonoBehaviour {
 	public bool attached;
 	public Rigidbody rb;
 	public UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController rbController;
+	public Transform origin;
+	public LineRenderer line;
+	public Light light;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
 		rbController = GetComponent<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>();
+		origin = transform.Find("LeashOrigin");
+		line = origin.GetComponent<LineRenderer>();
+		light = GetComponentInChildren<Light>();
 		attached = false;
 	}
 	
@@ -31,9 +37,14 @@ public class GravityLeash : MonoBehaviour {
 	void FixedUpdate() {
 		if(attached) {
 			rb.useGravity = false;
+			line.enabled = true;
+			light.enabled = true;
 			ReelInLeash();
+			RenderLeashBeam();
 		} else {
 			rb.useGravity = true;
+			line.enabled = false;
+			light.enabled = false;
 		}
 	}
 
@@ -57,6 +68,14 @@ public class GravityLeash : MonoBehaviour {
 	void ReelInLeash() {
 		Vector3 direction = point - transform.position;
 		rb.AddForce(direction * leashForce);	
+	}
+
+	void RenderLeashBeam() {
+		Vector3 start = origin.position;
+		Vector3 end = point;
+
+		Vector3[] positions = new Vector3[] {start, end};
+		line.SetPositions(positions);
 	}
 }
 
