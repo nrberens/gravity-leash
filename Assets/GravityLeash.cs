@@ -67,7 +67,7 @@ public class GravityLeash : MonoBehaviour {
 
 	void ReelInLeash() {
 		Vector3 direction = point - transform.position;
-		rb.AddForce(direction * leashForce);	
+		rb.AddForce(direction.normalized * leashForce);	
 	}
 
 	void RenderLeashBeam() {

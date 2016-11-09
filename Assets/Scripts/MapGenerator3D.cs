@@ -5,6 +5,12 @@ using System.Linq;
 using CoherentNoise.Generation.Fractal;
 
 public class MapGenerator3D : MonoBehaviour {
+	public enum FillType {
+		Random,
+		Pink,
+		Ridge,
+		Billow
+	}
 
 	public int height;
 	public int width;
@@ -13,12 +19,19 @@ public class MapGenerator3D : MonoBehaviour {
 	public string seed;
 
 	public bool useRandomSeed;
+	public FillType fillType;
 
 	[RangeAttribute(0,100)]
 	public int randomFillPercent;
 	public int smoothIterations;
 	public int minSmoothWalls;
 	public int maxSmoothWalls;
+	[RangeAttribute(-1f, 1f)]
+	public float pinkFillCutoff;
+	[RangeAttribute(0f, 2f)]
+	public float ridgeFillCutoff;
+	[RangeAttribute(-2f, 0f)]
+	public float billowFillCutoff;
 	int [,,] map;
 
 	public int currentGizmoDepth;
@@ -50,17 +63,27 @@ public class MapGenerator3D : MonoBehaviour {
 	void GenerateMap() {
 		map = new int[width, height, depth];
 
-		//RandomFillMap();
-		//PerlinFillMap();
-		//RidgeFillMap();
-		BillowFillMap();
+		switch(fillType) {
+			case FillType.Random:
+				RandomFillMap();
+				break;
+			case FillType.Pink:
+				PerlinFillMap();
+				break;
+			case FillType.Ridge:
+				RidgeFillMap();
+				break;
+			case FillType.Billow:
+				BillowFillMap();
+				break;
+		}
 
 		for (int i = 0; i < smoothIterations; i++) {
 			SmoothMap();
 		}
 
 		//TODO not working
-		AddWallsToMap();
+		RemoveWallsFromMap();
 
 		float[,,] floatMap = new float[width, height, depth];
 		for(int x = 0; x < width-1; x++) {
@@ -78,14 +101,16 @@ public class MapGenerator3D : MonoBehaviour {
 		mesh.RecalculateNormals();
 
 		GetComponent<MeshCollider>().sharedMesh = mesh;
+
+		ChangeMapMaterial();
 	}
 
-	void AddWallsToMap() {
+	void RemoveWallsFromMap() {
 		for(int x = 0; x < width; x++) {
 			for(int y = 0; y < height; y++) {
 				for(int z = 0; z < depth; z++) {
 					if(x==0 || x == width-1 || y ==0 || y == height-1 || z == 0 || z == depth-1) {
-						map[x,y,z] = 1;
+						map[x,y,z] = 0;
 					}
 				}
 			}
@@ -171,7 +196,7 @@ void BillowFillMap() {
 						map[x,y,z] = 1;
 					} else {
 						Debug.Log(billow.GetValue(x,y,z));
-						if(billow.GetValue(x,y,z) > -1.1f ) map[x,y,z] = 1;
+						if(billow.GetValue(x,y,z) > billowFillCutoff ) map[x,y,z] = 1;
 						else map[x,y,z] = 0;
 					}
 				}
@@ -215,6 +240,14 @@ void BillowFillMap() {
 
 
 		return wallCount;
+	}
+
+	void ChangeMapMaterial() {
+		MeshRenderer mr = GetComponent<MeshRenderer>();
+		Material mat = mr.materials[0];
+		Color color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value, 1.0f);
+		mat.color = color;
+		mr.materials[0] = mat;
 	}
 
 	void OnDrawGizmos() {
