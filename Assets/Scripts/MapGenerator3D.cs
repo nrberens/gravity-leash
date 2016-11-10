@@ -33,10 +33,11 @@ public class MapGenerator3D : MonoBehaviour {
 	[RangeAttribute(-2f, 0f)]
 	public float billowFillCutoff;
 	int [,,] map;
+	public Mesh myMesh;
 
 	public int currentGizmoDepth;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 		GenerateMap();
 		currentGizmoDepth = depth/2;
@@ -96,13 +97,20 @@ public class MapGenerator3D : MonoBehaviour {
 
 		MarchingCubes.SetModeToCubes();
 		Mesh mesh = MarchingCubes.CreateMesh(floatMap);
+
+		//Move all vertices so that origin is centered
+		Vector3[] vertices = mesh.vertices;
+
+/*		for(int i = 0; i < vertices.Count(); i++) {
+			vertices[i] = vertices[i] + (-mesh.bounds.center);
+		}*/
+
 		mesh.name = "world";
+		myMesh = mesh;
 		GetComponent<MeshFilter>().mesh = mesh;
 		mesh.RecalculateNormals();
 
 		GetComponent<MeshCollider>().sharedMesh = mesh;
-
-		ChangeMapMaterial();
 	}
 
 	void RemoveWallsFromMap() {
@@ -242,13 +250,6 @@ void BillowFillMap() {
 		return wallCount;
 	}
 
-	void ChangeMapMaterial() {
-		MeshRenderer mr = GetComponent<MeshRenderer>();
-		Material mat = mr.materials[0];
-		Color color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value, 1.0f);
-		mat.color = color;
-		mr.materials[0] = mat;
-	}
 
 	void OnDrawGizmos() {
 		/*if(map != null) {
