@@ -14,6 +14,7 @@ public class GravityLeash : MonoBehaviour {
     public AudioClip beamStart;
     public AudioClip beamLoop;
     public AudioClip beamEnd;
+	public AudioClip teleport;
     public AudioSource audioSource;
 
 	// Use this for initialization
@@ -93,5 +94,6 @@ public class GravityLeash : MonoBehaviour {
 		Vector3[] positions = new Vector3[] {start, end};
 		line.SetPositions(positions);
 	}
+
 }
 

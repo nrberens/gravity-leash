@@ -51,14 +51,11 @@ public class MapGenerator3D : MonoBehaviour {
 		if(Input.GetMouseButtonDown(1)){
 			currentGizmoDepth--;
 		}*/
-		if(Input.GetKeyDown(KeyCode.G)) {
-			GenerateMap();
-		}
-		if(Input.GetKeyDown(KeyCode.F)) {
+		/*if(Input.GetKeyDown(KeyCode.F)) {
 			//flip normals
 			Mesh mesh = GetComponent<MeshFilter>().mesh;
 			mesh.triangles = mesh.triangles.Reverse().ToArray();
-		}
+		}*/
 	}
 
 	void GenerateMap() {

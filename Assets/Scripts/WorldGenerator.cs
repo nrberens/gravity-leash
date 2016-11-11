@@ -27,6 +27,7 @@ public class WorldGenerator : MonoBehaviour {
 			if(i == 0) {
 				Debug.Log(newPos);
 				player.transform.position = newPos + new Vector3(mapSize/2,mapSize/2,mapSize/2);
+				gc.playerInitPos = player.transform.position;
 			}
 		}
 	}
