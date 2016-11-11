@@ -6,12 +6,14 @@ public class Gem : MonoBehaviour {
 	public GameController gc;
 	public AudioClip chime;
 	public AudioSource audioSource;
+    public ParticleSystem particle;
 	[SerializeField] private float speed;
 	// Use this for initialization
 	void Start () {
 		gc = GameObject.Find("GameController").GetComponent<GameController>();
 		audioSource = GetComponent<AudioSource>();
 		audioSource.clip = chime;
+        particle = GetComponentInChildren<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -21,12 +23,12 @@ public class Gem : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider) {
 		if(collider.CompareTag("Player")) {
-			//decrement gem count
-			StartCoroutine(CollectGemAndDestroy(collider.gameObject));
+            //decrement gem count
+            CollectGemAndDestroy(collider.gameObject);
 		}
 	}
 
-	public IEnumerator CollectGemAndDestroy(GameObject obj) {
+	public void CollectGemAndDestroy(GameObject obj) {
 		//Assumes the player is the only other collider
 		//TODO suck gem into player?
 		//Play sound effect?
@@ -36,10 +38,9 @@ public class Gem : MonoBehaviour {
 
 		gc.gemsRemaining--;
 		audioSource.PlayOneShot(chime);
-		while(audioSource.isPlaying) {
-			yield return null;
-		}
 
-		GameObject.Destroy(this.gameObject);
+        particle.Play();
+
+		Destroy(this.gameObject, 2f);
 	}
 }

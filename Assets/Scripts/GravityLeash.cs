@@ -11,6 +11,10 @@ public class GravityLeash : MonoBehaviour {
 	public Transform origin;
 	public LineRenderer line;
 	public Light light;
+    public AudioClip beamStart;
+    public AudioClip beamLoop;
+    public AudioClip beamEnd;
+    public AudioSource audioSource;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +23,7 @@ public class GravityLeash : MonoBehaviour {
 		origin = transform.Find("LeashOrigin");
 		line = origin.GetComponent<LineRenderer>();
 		light = GetComponentInChildren<Light>();
+        audioSource = GetComponent<AudioSource>();
 		attached = false;
 	}
 	
@@ -36,12 +41,18 @@ public class GravityLeash : MonoBehaviour {
 
 	void FixedUpdate() {
 		if(attached) {
+            if(!audioSource.isPlaying)
+            {
+                audioSource.clip = beamLoop;
+                audioSource.Play();
+            }
 			rb.useGravity = false;
 			line.enabled = true;
 			light.enabled = true;
 			ReelInLeash();
 			RenderLeashBeam();
 		} else {
+            if(audioSource.isPlaying) audioSource.Stop();
 			rb.useGravity = true;
 			line.enabled = false;
 			light.enabled = false;
@@ -49,6 +60,7 @@ public class GravityLeash : MonoBehaviour {
 	}
 
 	void FireLeash() {
+        audioSource.PlayOneShot(beamStart);
 		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 		RaycastHit hit;
 
@@ -64,6 +76,7 @@ public class GravityLeash : MonoBehaviour {
 	}
 
 	void DetachLeash() {
+        audioSource.PlayOneShot(beamEnd);
 		attached = false;
 		rbController.m_leashAttached = false;
 	}
