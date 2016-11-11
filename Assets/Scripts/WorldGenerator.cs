@@ -32,9 +32,9 @@ public class WorldGenerator : MonoBehaviour {
 	}
 	
 	Vector3 GetNewPosition(int i) {
-		float x = Random.Range(i * mapSize, i * mapSize * 2);
-		float y = Random.Range(i * mapSize, i * mapSize * 2);
-		float z = Random.Range(i * mapSize, i * mapSize * 2);
+		float x = Random.Range(i * mapSize * -2, i * mapSize * 2);
+		float y = Random.Range(i * mapSize * -2, i * mapSize * 2);
+		float z = Random.Range(i * mapSize * -2, i * mapSize * 2);
 
 		Vector3 pos = new Vector3(x,y,z);
 		return pos;
