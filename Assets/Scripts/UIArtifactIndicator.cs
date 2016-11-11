@@ -17,7 +17,7 @@ public class UIArtifactIndicator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = circle.ToString() + " " + gc.gemsRemaining + "/" + gc.totalGems;
+		text.text = circle.ToString() + " " + gc.gemsCollected + "/" + gc.totalGems;
 	
 	}
 }

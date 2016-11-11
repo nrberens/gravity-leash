@@ -94,6 +94,5 @@ public class GravityLeash : MonoBehaviour {
 		Vector3[] positions = new Vector3[] {start, end};
 		line.SetPositions(positions);
 	}
-
 }
 

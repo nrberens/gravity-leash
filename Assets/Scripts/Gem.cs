@@ -36,7 +36,7 @@ public class Gem : MonoBehaviour {
 		GetComponent<Renderer>().enabled = false;
 		GetComponent<Collider>().enabled = false;
 
-		gc.gemsRemaining--;
+		gc.gemsCollected++;
 		audioSource.PlayOneShot(chime);
 
         particle.Play();

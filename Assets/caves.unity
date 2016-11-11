@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalGems: 0
-  gemsRemaining: 0
+  gemsCollected: 0
   playerInitPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &636794549
 Prefab:
@@ -322,7 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b048bfe8b8f2492e916cda9be9017c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleport: {fileID: 8300000, guid: 0863132fd07dc49c3baa983a9672c478, type: 3}
 --- !u!1 &847523056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,4 +1273,5 @@ MonoBehaviour:
   beamStart: {fileID: 8300000, guid: 1b5f740f01c9e924d9380f8d76e1d435, type: 3}
   beamLoop: {fileID: 8300000, guid: a352e3ef063d21a47bd9e400fc0e8e46, type: 3}
   beamEnd: {fileID: 8300000, guid: f06f29f93d8cbd146ac58315b1c337eb, type: 3}
+  teleport: {fileID: 8300000, guid: 0863132fd07dc49c3baa983a9672c478, type: 3}
   audioSource: {fileID: 0}

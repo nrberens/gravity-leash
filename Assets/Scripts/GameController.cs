@@ -5,15 +5,15 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
 	public int totalGems;
-	public int gemsRemaining;
+	public int gemsCollected;
 	public Vector3 playerInitPos;
 
 	void Start() {
-		gemsRemaining = totalGems;
+		gemsCollected = 0;
 	}
 
 	void Update() {
-		if(gemsRemaining <= 0) {
+		if(gemsCollected >= totalGems) {
 			EndGame();
 		}
 
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)) {
-			//SceneManager.LoadScene("title");
+			SceneManager.LoadScene("title");
 		}
 	}
 
